@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+  
+    
+    <entry>
+      <title>de Bruijn cycle</title>
+      <link href="/2023/07/24/de-Bruijn-cycle/"/>
+      <url>/2023/07/24/de-Bruijn-cycle/</url>
+      
+        <content type="html"><![CDATA[<p>一个 $n$ 元 $k$ 阶 de Bruijn cycle 是由 $n$ 种字符组成的长度为 $n^k$ 的环，满足每连续 $k$ 个字符恰出现 $n^k$ 种可能各一次.</p><p>本文将给出本质不同的 $n$ 元 $k$ 阶 de Bruijn cycle 数量公式.</p><h2 id><a href="#" class="headerlink" title></a></h2><p>构造有向图 $G(n,k)&#x3D;(V,E)$ .</p><p>$V&#x3D;[n]^{k-1}$ ，即 $n^{k-1}$ 个结点，每个结点对应由 $n$ 个字符组成的所有长度为 $k-1$ 的字符串.</p><p>$E&#x3D;\{(u,v)|\exists x,y\in [n]:x+u&#x3D;v+y\}$ ，这里的 $+$ 是字符串连接. 即 $G$ 中有从 $u$ 到 $v$ 的边，当且仅当存在长度为 $k$ 的字符串，其后 $k-1$ 位为 $u$ ，前 $k-1$ 位为 $v$ .</p><p>如下图即 $G(2,4)$ ：</p><p><img src="1.png" alt="图片"></p><h2 id="-1"><a href="#-1" class="headerlink" title></a></h2><p>$n$ 元 $k$ 阶 de Bruijn cycle 与 $G(n,k)$ 的欧拉回路一一对应.</p><p>具体来说，欧拉回路依次经过的边就对应着 de Bruijn cycle 上依次排列的连续 $k$ 个字符.</p><p>根据 <a href="https://oi-wiki.org/graph/matrix-tree/#best-%E5%AE%9A%E7%90%86">BEST 定理</a> ， $G(n,k)$ 的欧拉回路数为</p><p>$$EC(G)&#x3D;\det L_{G}^{[-1]} \prod_{v\in V}(\deg v-1)!$$</p><p>，其中 $\det L_G^{[-1]}$ 为 $G$ 的 Laplace 矩阵 $L_G$ 删去任意一个结点 $v$ 对应的行和列后的余子式.</p><p>观察到：</p><p><strong>(1)</strong> 在 $G(n,k)$ 中显然有 $\forall v\in V:\deg v&#x3D;n$ .</p><p><strong>(2)</strong> 记 Laplace 矩阵 $L_G&#x3D;nI-A_G$ 的特征值为 $\gamma_1\le \gamma_2\le …\le \gamma_{n^{k-1}}$ ，</p><p>$$n^{k-1}\det L_G^{[-1]}&#x3D;\sum_{v\in V}\det L_G^{[-v]}&#x3D;-\det(L_G-tI)[t]\\<br>&#x3D;(-\prod_{i&#x3D;1}^{n^{k-1}}(\gamma_i-t))[t]&#x3D;\prod_{i&#x3D;2}^{n^{k-1}}\gamma_i(\gamma_1&#x3D;0)$$</p><p>事实上，在无向图中，总有 $\det L_G^{[-1]}&#x3D;\cfrac{\prod_{i&#x3D;2}^{|V|}\gamma_i}{|V|}$ 成立. 这也被认为是另一种形式的矩阵树定理.</p><p><strong>(3)</strong> $\forall u,v\in V$ ， $G$ 中有经过恰 $k-1$ 条边从 $u$ 到 $v$ 的唯一方式：</p><p>$$u\rightarrow u[2…n]+v[1]\rightarrow u[3…n]+v[1…2]\rightarrow …\rightarrow u[n]+v[1…(n-1)]\rightarrow v$$</p><p>故 $A_G^{k-1}&#x3D;\mathbf 1\cdot\mathbf 1^T$ ，其特征值为 $\lambda_1&#x3D;n^{k-1},\lambda_2&#x3D;\lambda_3&#x3D;…&#x3D;\lambda_{n^{k-1}}&#x3D;0$ .</p><p>故可知 $A_G$ 的特征值为 $\lambda_1&#x3D;n,\lambda_2&#x3D;\lambda_3&#x3D;…\lambda_{n^{k-1}}&#x3D;0$ ；</p><p>$L_G$ 的特征值为 $\gamma_1&#x3D;0,\gamma_2&#x3D;\gamma_3&#x3D;…&#x3D;\gamma_{n^{k-1}}&#x3D;n$ .</p><p>综上所述，</p><p>$$EC(G)&#x3D;\cfrac{\prod_{i&#x3D;2}^{n^{k-1}}\gamma_i }{n^{k-1}}\cdot \prod_{v\in V}(\deg v-1)!&#x3D;n^{n^{k-1}-k}\cdot [(n-1)!]^{n^{k-1}}&#x3D;\cfrac {(n!)^{n^{k-1}}}{n^k}$$</p><p>故本质不同的 $n$ 元 $k$ 阶 de Bruijn cycle 有 $\cfrac{(n!)^{n^{k-1}}}{n^k}$ 种.</p><h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a href="https://pi.math.cornell.edu/~levine/18.312/alg-comb-lecture-19.pdf">https://pi.math.cornell.edu/~levine/18.312/alg-comb-lecture-19.pdf</a></p><p><a href="https://pi.math.cornell.edu/~levine/18.312/alg-comb-lecture-21.pdf">https://pi.math.cornell.edu/~levine/18.312/alg-comb-lecture-21.pdf</a></p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> notes </tag>
+            
+            <tag> Comb </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+  
+  
+</search>

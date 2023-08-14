@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="$$\sum_{k&#x3D;0}^n \binom {n+k} k 2^{-k}&#x3D;2^n$$ Proof只需证恒等式 $$\sum_{k\le m}\binom{m+r}k x^ky^{m-k}&#x3D;\sum_{k\le m}\binom{-r}k (-x)^k (x+y)^{m-k}$$ ，对任意实数 $r$ ，整数 $m$ 均成立，然后令 $x&#x3D;y&#x3D;1,r">
+<meta property="og:type" content="article">
+<meta property="og:title" content="A Combinatorial Identity">
+<meta property="og:url" content="https://hsfzlzh1.github.io/2023/08/14/A-Combinatorial-Identity/index.html">
+<meta property="og:site_name" content="hsfzLZH1&#39;s Homepage">
+<meta property="og:description" content="$$\sum_{k&#x3D;0}^n \binom {n+k} k 2^{-k}&#x3D;2^n$$ Proof只需证恒等式 $$\sum_{k\le m}\binom{m+r}k x^ky^{m-k}&#x3D;\sum_{k\le m}\binom{-r}k (-x)^k (x+y)^{m-k}$$ ，对任意实数 $r$ ，整数 $m$ 均成立，然后令 $x&#x3D;y&#x3D;1,r">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-08-14T13:27:13.000Z">
+<meta property="article:modified_time" content="2023-08-14T16:33:47.414Z">
+<meta property="article:author" content="hsfzLZH1">
+<meta property="article:tag" content="notes">
+<meta property="article:tag" content="Comb">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>A Combinatorial Identity</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/hsfzLZH1">Projects</a></li><!--
+     --><!--
+       --><li><a href="/search/">Search</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2023/07/24/de-Bruijn-cycle/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://hsfzlzh1.github.io/2023/08/14/A-Combinatorial-Identity/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://hsfzlzh1.github.io/2023/08/14/A-Combinatorial-Identity/&text=A Combinatorial Identity"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://hsfzlzh1.github.io/2023/08/14/A-Combinatorial-Identity/&title=A Combinatorial Identity"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hsfzlzh1.github.io/2023/08/14/A-Combinatorial-Identity/&is_video=false&description=A Combinatorial Identity"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=A Combinatorial Identity&body=Check out this article: https://hsfzlzh1.github.io/2023/08/14/A-Combinatorial-Identity/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://hsfzlzh1.github.io/2023/08/14/A-Combinatorial-Identity/&title=A Combinatorial Identity"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://hsfzlzh1.github.io/2023/08/14/A-Combinatorial-Identity/&title=A Combinatorial Identity"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://hsfzlzh1.github.io/2023/08/14/A-Combinatorial-Identity/&title=A Combinatorial Identity"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://hsfzlzh1.github.io/2023/08/14/A-Combinatorial-Identity/&title=A Combinatorial Identity"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://hsfzlzh1.github.io/2023/08/14/A-Combinatorial-Identity/&name=A Combinatorial Identity&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://hsfzlzh1.github.io/2023/08/14/A-Combinatorial-Identity/&t=A Combinatorial Identity"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Proof"><span class="toc-number">1.</span> <span class="toc-text">Proof</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1"><span class="toc-number">1.1.</span> <span class="toc-text">1.</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2"><span class="toc-number">1.2.</span> <span class="toc-text">2.</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Combinatorial-Proof"><span class="toc-number">2.</span> <span class="toc-text">Combinatorial Proof</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9B%B4%E5%A4%9A-2n-1-%E5%B1%80-n-%E8%83%9C%E6%AF%94%E8%B5%9B%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="toc-number">3.</span> <span class="toc-text">更多 $2n-1$ 局 $n$ 胜比赛的性质</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">4.</span> <span class="toc-text"></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#-1"><span class="toc-number">5.</span> <span class="toc-text"></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">6.</span> <span class="toc-text">Reference</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        A Combinatorial Identity
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">hsfzLZH1</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2023-08-14T13:27:13.000Z" class="dt-published" itemprop="datePublished">2023-08-14</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/Comb/" rel="tag">Comb</a>, <a class="p-category" href="/tags/notes/" rel="tag">notes</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <p>$$\sum_{k&#x3D;0}^n \binom {n+k} k 2^{-k}&#x3D;2^n$$</p>
+<h2 id="Proof"><a href="#Proof" class="headerlink" title="Proof"></a>Proof</h2><p>只需证恒等式</p>
+<p>$$\sum_{k\le m}\binom{m+r}k x^ky^{m-k}&#x3D;\sum_{k\le m}\binom{-r}k (-x)^k (x+y)^{m-k}$$</p>
+<p>，对任意实数 $r$ ，整数 $m$ 均成立，然后令 $x&#x3D;y&#x3D;1,r&#x3D;m+1$ ，化简可得</p>
+<p>$$LHS&#x3D;\sum_{k\le m}\binom{2m+1}k&#x3D;\cfrac 12\sum_{k}\binom{2m+1}k&#x3D;2^{2m+1-1}&#x3D;2^{2m}\\<br>RHS&#x3D;\sum_{k\le m}\binom{-(m+1)}k(-1)^k2^{m-k}&#x3D;\sum_{k\le m}\binom{k+m}k 2^{m-k}\\<br>RHS&#x3D;LHS \Rightarrow \sum_{k&#x3D;0}^m \binom{m+k}k2^{-k}&#x3D;2^m ~~~ \square$$</p>
+<p>该恒等式有两种证法：</p>
+<h3 id="1"><a href="#1" class="headerlink" title="1."></a>1.</h3><p>对固定的 $r,x,y$ ，对 $m$ 归纳.</p>
+<p>$m&lt;0$ 时， $LHS&#x3D;RHS&#x3D;0$ ；</p>
+<p>$m&#x3D;0$ 时， $LHS&#x3D;RHS&#x3D;1$ ；</p>
+<p>若已对任意 $m\le t(t\in \mathbb N)$ ，证明了 $LHS_m&#x3D;RHS_m&#x3D;S_m$ ，往证对 $m&#x3D;t+1$ 也有 $LHS_{t+1}&#x3D;RHS_{t+1}&#x3D;S_{t+1}$ ：</p>
+<p>$$\begin{aligned}LHS_{t+1}&amp;&#x3D;\sum_{k\le t+1}\binom{t+1+r}k x^ky^{t+1-k}\\<br>&amp;&#x3D;\sum_{k\le t+1}(\binom{t+r}k+\binom{t+r}{k-1})x^ky^{t+1-k}\\<br>&amp;&#x3D;\sum_{k\le t}\binom{t+r}k x^ky^{t-k+1}+\binom {t+r}{t+1}x^{t+1}+\sum_{k-1\le t}\binom{t+r}{k-1}x^{k-1+1}y^{t-(k-1)}\\<br>&amp;&#x3D;yLHS_{t}+\binom {t+r}{t+1}x^{t+1}+xLHS_t\\<br>&amp;&#x3D;(x+y)S_t+\binom{t+r}{t+1}x^{t+1}\end{aligned}$$</p>
+<p>$$\begin{aligned}RHS_{t+1}&amp;&#x3D;\sum_{k\le t+1}\binom{-r}k (-x)^k(x+y)^{t+1-k}\\<br>&amp;&#x3D;\sum_{k\le t}\binom{-r}k (-x)^k(x+y)^{t-k+1}+\binom{-r}{t+1} (-x)^{t+1}\\<br>&amp;&#x3D;(x+y)RHS_t+\binom{t+r}{t+1} x^{t+1}\\<br>&amp;&#x3D;(x+y)S_t+\binom {t+1}{t+1}x^{t+1}&#x3D;LHS_{t+1}\end{aligned}$$</p>
+<p>归纳成立. $\square$</p>
+<h3 id="2"><a href="#2" class="headerlink" title="2."></a>2.</h3><p>固定 $x,y,k$ ，则等号两侧均为关于 $r$ 的 $m$ 次多项式.</p>
+<p>由二项式定理可知 $r\in [-m,-1]\cap \mathbb Z$ 时 $LHS&#x3D;RHS&#x3D;(x+y)^{m+r}y^{-r}$ ，两个 $m$ 次多项式的差有 $m+1$ 个零点，故两个多项式相等. 恒等式成立. $\square$</p>
+<h2 id="Combinatorial-Proof"><a href="#Combinatorial-Proof" class="headerlink" title="Combinatorial Proof"></a>Combinatorial Proof</h2><p>现在考察原组合恒等式的组合意义.</p>
+<p>考虑甲乙两人在进行一种 $2n+1$ 局 $n+1$ 胜的比赛，每局甲获胜的概率为 $p$ ，乙获胜的概率为 $q&#x3D;1-p$ ，每局的结果相互独立.</p>
+<p>设甲获胜（赢 $n+1$ 局）时乙赢的局数为 $k(0\le k\le n)$ ，则前 $n+k$ 局乙恰赢 $k$ 局，且第 $n+k+1$ 局甲赢，甲获胜的概率为</p>
+<p>$$\sum_{k&#x3D;0}^n \binom{n+k}kp^nq^kp&#x3D;\sum_{k&#x3D;0}^n \binom{n+k}kp^{n+1}q^k$$</p>
+<p>乙获胜的概率同理为 $\sum_{k&#x3D;0}^n \binom{n+k}k p^kq^{n+1}$ .</p>
+<p>甲乙必恰有一人获胜，再代入 $p&#x3D;q&#x3D;\cfrac 12$ 得</p>
+<p>$$1&#x3D;\sum_{k&#x3D;0}^n \binom{n+k}k (p^{n+1}q^k+p^kq^{n+1})&#x3D;\sum_{k&#x3D;0}^n \binom{n+k}k 2^{-n-k-1+1}&#x3D;\sum_{k&#x3D;0}^n \binom{n+k}k 2^{-n-k}$$</p>
+<p>，即 $\sum_{k&#x3D;0}^n \binom{n+k}k 2^{-k}&#x3D;2^n$ . $\square$</p>
+<h2 id="更多-2n-1-局-n-胜比赛的性质"><a href="#更多-2n-1-局-n-胜比赛的性质" class="headerlink" title="更多 $2n-1$ 局 $n$ 胜比赛的性质"></a>更多 $2n-1$ 局 $n$ 胜比赛的性质</h2><p>$p&#x3D;q&#x3D;\cfrac 12$ 时，比赛期望进行的轮数</p>
+<p>$$\begin{aligned}E_n&amp;&#x3D;\sum_{k&#x3D;0}^{n-1}(n+k)\binom{n+k-1}k2^{-n-k+1}\\<br>&amp;&#x3D;\sum_{k&#x3D;0}^{n-1}2n\binom{n+k}k2^{-n-k}\\<br>&amp;&#x3D;2n(\sum_{k&#x3D;0}^n \binom{n+k}k 2^{-n-k}-\binom{2n}n 2^{-2n})\\<br>&amp;&#x3D;2n(1-\binom{2n}n 2^{-2n})\end{aligned}$$</p>
+<p>由阶乘近似公式可知 $E_n\approx 2n(1-\cfrac {1}{\sqrt {n\pi}})$ .</p>
+<h2 id><a href="#" class="headerlink" title></a></h2><p>记结束时甲获胜的概率为 $P^A_n$ ，乙获胜的概率为 $P^B_n$ .</p>
+<p>显然 $P^A_1&#x3D;p,P^B_1&#x3D;q$ .</p>
+<p>考虑 $P^A_{n+1}-P^A_n$ . 假设 $2n-1$ 局 $n$ 胜比赛并不在一方出现 $n$ 胜后结束，而是进行所有 $2n-1$ 局，有 $n$ 胜的一方获胜，这样不改变胜率.</p>
+<p>已经进行了 $2n-1$ 局比赛，再进行 $2$ 局，会改变胜负的情况有 $2$ 种：</p>
+<ul>
+<li><p>之前甲 $n$ 胜 $n-1$ 负，之后 $2$ 负，甲由胜转负；</p>
+</li>
+<li><p>之前甲 $n-1$ 胜 $n$ 负，之后 $2$ 胜，甲由负转胜.</p>
+</li>
+</ul>
+<p>$$P^A_{n+1}-P^A_n&#x3D;\binom{2n-1}n p^{n-1}q^np^2-\binom{2n-1}n p^nq^{n-1}q^2\\<br>&#x3D;(p-q)\binom{2n-1}np^nq^n&#x3D;\cfrac{p-q}2\binom{2n}np^nq^n$$</p>
+<p>故 </p>
+<p>$$P^A_n&#x3D;p+\sum_{k&#x3D;1}^{n-1}\cfrac{p-q}2 \binom{2k}kp^kq^k&#x3D;p+\cfrac{p-q}2\sum_{k&#x3D;1}^{n-1}\binom{2k}k p^kq^k$$</p>
+<p>，对称地，</p>
+<p>$$P^B_n&#x3D;q+\cfrac{q-p}2\sum_{k&#x3D;1}^{n-1}\binom{2k}k p^kq^k$$</p>
+<p>$p\neq q$ 时，</p>
+<p>$$\lim_{n\rightarrow \infty}P^A_n&#x3D;p+\cfrac{p-q}2(\cfrac 1{\sqrt{1-4pq}}-1)&#x3D;p+\cfrac{p-q}{2|p-q|}-\cfrac{p-q}2&#x3D;[p&gt;q]$$</p>
+<p>，同理 $\lim_{n\rightarrow \infty} P^B_n&#x3D;[p&lt;q]$ .</p>
+<h2 id="-1"><a href="#-1" class="headerlink" title></a></h2><p>$pq\neq 0$ 时，比赛期望进行的轮数</p>
+<p>$$\begin{aligned}E_n&amp;&#x3D;\sum_{k&#x3D;0}^{n-1}(n+k)\binom{n+k-1}k (p^nq^k+p^kq^n)\\<br>&amp;&#x3D;\sum_{k&#x3D;0}^{n-1}n\binom{n+k}k(p^nq^k+p^kq^n)\\<br>&amp;&#x3D;n(\sum_{k&#x3D;0}^{n}\binom{n+k}kp^nq^k-\binom{2n}np^nq^n)+n(\sum_{k&#x3D;0}^n\binom{n+k}kp^kq^n-\binom{2n}np^nq^n)\\<br>&amp;&#x3D;n(\cfrac 1p P^A_{n+1}+\cfrac 1q P^B_{n+1}-2\binom{2n}np^nq^n)\\<br>&amp;&#x3D;2n(1+\cfrac{p-q}4(\cfrac 1p-\cfrac 1q)\sum_{k&#x3D;1}^n\binom{2k}kp^kq^k-\binom{2n}np^nq^n)\\<br>&amp;&#x3D;2n(1-\binom{2n}np^nq^n-\cfrac{(p-q)^2}{4pq}\sum_{k&#x3D;1}^n \binom{2k}k p^kq^k)\end{aligned}$$</p>
+<p>（之前组合证明部分已给出</p>
+<p>$$P^A_{n+1}&#x3D;\sum_{k&#x3D;0}^{n} \binom{n+k}kp^{n+1}q^k\\<br>P^B_{n+1}&#x3D;\sum_{k&#x3D;0}^n \binom{n+k}k p^kq^{n+1}$$ ）</p>
+<p>$p\neq q$ 时， $0&lt;pq&lt;\cfrac 14$ ，</p>
+<p>$$\begin{aligned}\lim_{n\rightarrow \infty}\cfrac{E_n}{2n}&amp;&#x3D;1-0-\cfrac{(p-q)^2}{4pq}\sum_{k&#x3D;1}^{\infty}\binom{2k}k p^kq^k\\<br>&amp;&#x3D;1-\cfrac{(p-q)^2}{4pq}(\cfrac{1}{\sqrt{1-4pq}}-1)\end{aligned}$$</p>
+<p>上式在 $p\rightarrow 0$ 或 $q\rightarrow 0$ 时取极限可得 $\lim_{n\rightarrow \infty}\cfrac{E_n}{2n}&#x3D;\cfrac 12$ ，事实上此时 $E_n\approx n$ .</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a target="_blank" rel="noopener" href="https://www.jstor.org/stable/2133147">A Combinatorial Identity and the World Series</a></p>
+
+  </div>
+</article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the comments.</noscript>
+        </div>
+    </div>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/about/">About</a></li>
+        
+          <li><a href="/archives/">Writing</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="http://github.com/hsfzLZH1">Projects</a></li>
+        
+          <li><a href="/search/">Search</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Proof"><span class="toc-number">1.</span> <span class="toc-text">Proof</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1"><span class="toc-number">1.1.</span> <span class="toc-text">1.</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2"><span class="toc-number">1.2.</span> <span class="toc-text">2.</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Combinatorial-Proof"><span class="toc-number">2.</span> <span class="toc-text">Combinatorial Proof</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9B%B4%E5%A4%9A-2n-1-%E5%B1%80-n-%E8%83%9C%E6%AF%94%E8%B5%9B%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="toc-number">3.</span> <span class="toc-text">更多 $2n-1$ 局 $n$ 胜比赛的性质</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">4.</span> <span class="toc-text"></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#-1"><span class="toc-number">5.</span> <span class="toc-text"></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">6.</span> <span class="toc-text">Reference</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://hsfzlzh1.github.io/2023/08/14/A-Combinatorial-Identity/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://hsfzlzh1.github.io/2023/08/14/A-Combinatorial-Identity/&text=A Combinatorial Identity"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://hsfzlzh1.github.io/2023/08/14/A-Combinatorial-Identity/&title=A Combinatorial Identity"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hsfzlzh1.github.io/2023/08/14/A-Combinatorial-Identity/&is_video=false&description=A Combinatorial Identity"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=A Combinatorial Identity&body=Check out this article: https://hsfzlzh1.github.io/2023/08/14/A-Combinatorial-Identity/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://hsfzlzh1.github.io/2023/08/14/A-Combinatorial-Identity/&title=A Combinatorial Identity"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://hsfzlzh1.github.io/2023/08/14/A-Combinatorial-Identity/&title=A Combinatorial Identity"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://hsfzlzh1.github.io/2023/08/14/A-Combinatorial-Identity/&title=A Combinatorial Identity"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://hsfzlzh1.github.io/2023/08/14/A-Combinatorial-Identity/&title=A Combinatorial Identity"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://hsfzlzh1.github.io/2023/08/14/A-Combinatorial-Identity/&name=A Combinatorial Identity&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://hsfzlzh1.github.io/2023/08/14/A-Combinatorial-Identity/&t=A Combinatorial Identity"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2023
+    hsfzLZH1
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/hsfzLZH1">Projects</a></li><!--
+     --><!--
+       --><li><a href="/search/">Search</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'hsfzlzh1-github-io';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+<!-- utterances Comments -->
+
+</body>
+</html>
